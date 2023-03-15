@@ -1,7 +1,7 @@
 # GDOU_srun_login
-for GDOUer to auto connect their new god damn network  <br>
-广东海洋大学特别版  <br>
-####支持edge,chrome浏览器 （windows only)
+## for GDOUer to auto connect their new god damn network  <br>
+## 广东海洋大学特别版  <br>
+#### 支持edge,chrome浏览器 （windows only)  <br>
  
 > how?  <br>
   do not use 10.129.1.1 but 1.1.1.1 instead.  <br>
