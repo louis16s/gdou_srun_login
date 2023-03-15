@@ -1,5 +1,7 @@
 # GDOU_srun_login
-for GDOUer to auto connect their new god damn network
+for GDOUer to auto connect their new god damn network  <br>
+
+####支持edge,chrome浏览器 （windows only)
  
 > how?  <br>
   do not use 10.129.1.1 but 1.1.1.1 instead.  <br>
@@ -12,4 +14,5 @@ I use requests to replace ping3  <br>
 ~~provide wifi connect parm~~  <br>
 I accidently delete it  <br>
 ~~provide log out function~~  <br>
-it still there
+it still there  <br>
+[![Jc4kL.md.jpeg](https://i.328888.xyz/2023/03/15/Jc4kL.md.jpeg)](https://imgloc.com/i/Jc4kL)
