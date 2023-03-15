@@ -15,4 +15,4 @@ I use requests to replace ping3  <br>
 I accidently delete it  <br>
 ~~provide log out function~~  <br>
 it still there  <br>
-[![Jc4kL.md.jpeg](https://i.328888.xyz/2023/03/15/Jc4kL.md.jpeg)](https://imgloc.com/i/Jc4kL)
+![Jc4kL.jpeg](https://i.328888.xyz/2023/03/15/Jc4kL.jpeg)
