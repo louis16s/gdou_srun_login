@@ -2,7 +2,7 @@
 ## for GDOUer to auto connect their new god damn network  <br>
 ## 广东海洋大学特别版  <br>
 #### 支持edge,chrome浏览器 （windows only)  <br>
- 
+##### 内存占用 < 40m
 > how?  <br>
   do not use 10.129.1.1 but 1.1.1.1 instead.  <br>
   use playwright(better than selenium).  <br>
