@@ -7,7 +7,7 @@ for GDOUer to auto connect their new god damn network
   you can now avoid problems for requests.  <br>
   but require more memory.  <br>
 
-~~provide wifi connect parm~~
-I accidently delete it
-~~provide log out function~~
-
+~~provide wifi connect parm~~  <br>
+I accidently delete it  <br>
+~~provide log out function~~  <br>
+it still there
