@@ -7,6 +7,8 @@ for GDOUer to auto connect their new god damn network
   you can now avoid problems for requests.  <br>
   but require more memory.  <br>
 
+I use requests to replace ping3  <br>
+
 ~~provide wifi connect parm~~  <br>
 I accidently delete it  <br>
 ~~provide log out function~~  <br>
