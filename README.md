@@ -1,6 +1,6 @@
 # GDOU_srun_login
 for GDOUer to auto connect their new god damn network  <br>
-
+广东海洋大学特别版  <br>
 ####支持edge,chrome浏览器 （windows only)
  
 > how?  <br>
