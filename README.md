@@ -1,6 +1,6 @@
 # GDOU_srun_login
 ## for GDOUer to auto connect their new god damn network
-## 广东海洋大学特别版 支持无线接入
+## 广东海洋大学版 支持无线接入
 #### 支持edge,chrome浏览器 （仅提供windows下程序)
 ##### 内存占用 < 30mb
 > how?  <br>
@@ -30,3 +30,5 @@ I use requests to replace ping3  <br>
 ~~provide log out function~~  <br>
 it still there  <br>
 ![Jc4kL.jpeg](https://i.328888.xyz/2023/03/15/Jc4kL.jpeg)
+
+[![iPFdD8.jpeg](https://i.328888.xyz/2023/05/04/iPFdD8.jpeg)](https://imgloc.com/i/iPFdD8)
