@@ -3,6 +3,7 @@
 ## 广东海洋大学版 支持无线接入
 #### 支持edge,chrome浏览器 （仅提供windows下程序)
 ##### 内存占用 < 30mb
+###### 搭配路由器更方便哦
 > how?  <br>
   do not use 10.129.1.1 but 1.1.1.1 instead.  <br>
   use playwright(better than selenium).  <br>
