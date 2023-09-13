@@ -5,8 +5,6 @@ import msvcrt
 import os
 import requests
 import time
-import pywifi
-from pywifi import const
 from configparser import ConfigParser
 from datetime import datetime
 from playwright.sync_api import Playwright, sync_playwright
@@ -16,7 +14,7 @@ from rich.panel import Panel
 from rich.progress import track
 
 file100 = 'config.ini'
-version_info = '1.6'
+version_info = '1.60'
 
 def run(playwright: Playwright) -> None:
     try:
@@ -99,8 +97,7 @@ def file1():  # 文件读写
         printer('edge(1)|chrome(2)')
         local = input()
 
-        printer('使用网线(0)|GDOU.NET(1)')
-        connect = input()
+        connect = 0
 
         printer('网络检查间隔（秒）')
         check = int(input())
@@ -143,36 +140,6 @@ def file1():  # 文件读写
     return account, password, testurl, mode, local, connect, check
 
 
-def connect_wifi(ssid):
-    if ssid == '1':
-        ssid0 = "GDOU.NET"
-    if ssid == '2':
-        ssid0 = "海大校园网"
-    wifi = pywifi.PyWiFi()
-    ifaces = wifi.interfaces()[0]
-    print(ifaces.name())  # 输出无线网卡名称
-    ifaces.disconnect()
-    time.sleep(3)
-    profile = pywifi.Profile()  # 配置文件
-    profile.ssid = ssid0  # wifi名称
-    ifaces.remove_all_network_profiles()  # 删除其它配置文件
-    tmp_profile = ifaces.add_network_profile(profile)  # 加载配置文件
-    ifaces.connect(tmp_profile)
-    time.sleep(3)
-    isok = True
-
-    if ifaces.status() == const.IFACE_CONNECTED:
-        print("connect successfully!")
-    else:
-        print("connect failed!")
-        print('turn on ur wifi')
-        time.sleep(5)
-        connect_wifi(ssid)
-
-    time.sleep(1)
-    return isok
-
-
 def network_check():
     try:
         session = requests.Session()
@@ -184,8 +151,6 @@ def network_check():
 
 def os_checker():
     temp = file1()
-    if temp[5] != "0":
-        connect_wifi(temp[5])
     # os_version = platform.platform()
     if os.path.exists(file100):
         os.system('mode con cols=45 lines=8')
