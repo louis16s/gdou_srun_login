@@ -27,5 +27,5 @@ page.locator("text=登录").click()
 browser.close()
 
 ```
-#### 暂未提供异步版本
-![Jc4kL.jpeg](https://i.328888.xyz/2023/03/15/Jc4kL.jpeg)
+#### 取消掉了异步版本
+
