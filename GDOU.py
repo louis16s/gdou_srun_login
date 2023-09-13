@@ -222,16 +222,14 @@ def printer(content):  # 彩色输出
 
 def info():
     try:
-        url = ("http://10.129.1.1/cgi-bin/rad_user_info?"
-               "callback=jQuery112406118340540763985_1556004912581&_=1556004912582")  # 指定网址
+        url = ("http://10.129.1.1/cgi-bin/rad_user_info?callback=jQuery112406118340540763985_1556004912581&_=1556004912582")  # 指定网址
         response = requests.get(url=url)  # 发起请求#get会返回一个响应对象
         detail = response.text.split(',')
-
         ip = str(detail[12].split(':')[1]).replace('"', " ")
         printer("ip:" + ip)
-        sum = str(int(int(detail[20].split(':')[1])*0.000000001))
-        printer("已用流量："+sum+"GB")
-        device = str(detail[11].split(':')[1]).replace('"'," ")
+        sum = str(int(int(detail[26].split(':')[1])*0.000000001))
+        printer("已用流量："+ sum +"GB")
+        device = str(detail[16].split(':')[1]).replace('"'," ")
         printer("在线设备:" + device)
     except:
         printer("获取信息失败")
