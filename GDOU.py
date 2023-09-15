@@ -5,6 +5,7 @@ import msvcrt
 import os
 import requests
 import time
+import json
 import pywifi
 from pywifi import const
 from configparser import ConfigParser
@@ -16,7 +17,7 @@ from rich.panel import Panel
 from rich.progress import track
 
 file100 = 'config.ini'
-version_info = '1.6'
+version_info = '1.7'
 
 def run(playwright: Playwright) -> None:
     try:
@@ -54,7 +55,7 @@ def run(playwright: Playwright) -> None:
 
 
 def file1():  # 文件读写
-    global account, password, testurl, mode, local, connect, check
+    global account, password, testurl, mode, local, wifi, check
     console = Console()
     if os.path.exists(file100):  # 文件存在检测
         # printer('file existed')
@@ -72,18 +73,17 @@ def file1():  # 文件读写
         account = cf.get('main', 'uid')
         password = cf.get('main', 'pwd')
         # parm
-        local = cf.get('parm', 'local')
+        local = cf.get('parm', 'browser')
         mode = cf.get('parm', 'mode')
         check = cf.get('parm', 'check')
-        connect = cf.get('parm', 'connect')
+        wifi = cf.get('parm', 'wifi')
         testurl = cf.get('parm', 'url')
 
-        # return account, password, testurl, mode, local, connect, check
+        # return account, password, testurl, mode, local, wifi, check
     else:
         printer('config file not fund')
         os.system('mode con cols=48 lines=23')
-        printer('密码会自动加密')
-        printer('输入后请按回车')
+        printer('密码会自动加密');printer('输入后请按回车')
         printer('input account')
         account = input()
 
@@ -100,27 +100,30 @@ def file1():  # 文件读写
         local = input()
 
         printer('使用网线(0)|GDOU.NET(1)')
-        connect = input()
+        wifi = input()
 
         printer('网络检查间隔（秒）')
         check = int(input())
 
         testurl = 'http://1.1.1.1/'
-        t0 = '\n'
         password = cryptocode.encrypt(password, 'louis16s')  # 加密
 
         with open(file100, "w") as file:
             file.write(
-                '[main]' + t0 +
-                'uid = ' + str(account) + t0 +
-                'pwd = ' + str(password) + t0 +
-                '[parm]' + t0 +
-                'local = ' + str(local) + t0 +
-                'mode = ' + str(mode) + t0 +
-                'check = ' + str(check) + t0 +
-                'connect = ' + str(connect) + t0 +
-                'url = ' + str(testurl) + t0 +
-                'ver = ' + version_info + t0)
+                '[main]' + '\n' +
+                'uid = ' + str(account) + '\n' +
+                'pwd = ' + str(password) + '\n' +
+                '[parm]' + '\n' +
+                'browser = ' + str(local) + '\n' +
+                'mode = ' + str(mode) + '\n' +
+                'check = ' + str(check) + '\n' +
+                'wifi = ' + str(wifi) + '\n' +
+                'url = ' + str(testurl) + '\n' +
+                'ver = ' + version_info + '\n' + '\n' +
+                '# browser 1 for edge 2 for chrome' + '\n' +
+                '# mode 1 for headless'+ '\n' +
+                '# check for ping time(s)'+ '\n' +
+                '# wifi 0 for off 1 for on'+ '\n')
             file.close()
         for step in track(range(100), description="Writing..."):
             time.sleep(0.01)
@@ -140,7 +143,7 @@ def file1():  # 文件读写
     else:
         mode = False
 
-    return account, password, testurl, mode, local, connect, check
+    return account, password, testurl, mode, local, wifi, check
 
 
 def connect_wifi(ssid):
@@ -226,12 +229,18 @@ def info():
         url = (
             "http://10.129.1.1/cgi-bin/rad_user_info?callback=jQuery112406118340540763985_1556004912581&_=1556004912582")  # 指定网址
         response = requests.get(url=url)  # 发起请求#get会返回一个响应对象
-        detail = response.text.split(',')
-        ip = str(detail[12].split(':')[1]).replace('"', " ")
-        printer("ip:" + ip)
-        sum = str(int(int(detail[26].split(':')[1]) * 0.000000001))
-        printer("已用流量:" + sum + " GB")
-        device = str(detail[16].split(':')[1]).replace('"', " ")
+        json_start = response.text.index('(') + 1;json_end = response.text.rindex(')')
+        json_data = response.text[json_start:json_end]
+        data = json.loads(json_data)
+        ip = str(data.get("online_ip")).replace('"', " ")
+        printer("ip: " + ip)
+        sum_bytes = data.get("sum_bytes")
+        sum_gb = sum_bytes * 0.000000001
+        if sum_gb >= 1024:
+            sum = sum_gb/1024;printer("已用流量:{:.2f} TB".format(sum))
+        else:
+            sum = sum_gb;printer("已用流量:{:.2f} GB".format(sum))
+        device = str(data.get("online_device_total")).replace('"', " ")
         printer("在线设备:" + device)
     except:
         printer("获取信息失败")
