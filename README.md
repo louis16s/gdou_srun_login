@@ -12,7 +12,7 @@
 
 ```python
 #main function
-browser = playwright.chromium.launch(headless=True, channel=msedge)
+browser = playwright.chromium.launch(headless=True, channel='msedge')
 context = browser.new_context()
 page = context.new_page()
 print('url: ' + testurl)
